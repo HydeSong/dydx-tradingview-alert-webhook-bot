@@ -1,7 +1,7 @@
 
 import express from 'express';
 import { DydxClient } from '@dydxprotocol/v3-client';
-// import axios from 'axios';
+import axios from 'axios';
 
 const router = express.Router();
 
@@ -17,14 +17,14 @@ console.log(client.private);
 console.log(client.public);
 console.log(client.public.getMarkets);
 console.log('testing....');
-// const request = axios.create({
-//   proxy: {
-//     'host': '127.0.0.1',
-//     'port': 5000,
-//     'protocol': 'http',
-//   },
-// });
-// request.get('https://api.stage.dydx.exchange/v3/markets').then(res => console.log('axios res....', res));
+const request = axios.create({
+  proxy: {
+    'host': '127.0.0.1',
+    'port': 5000,
+    'protocol': 'http',
+  },
+});
+request.get('https://api.stage.dydx.exchange/v3/markets').then(res => console.log('axios res....', res));
 
 router.post<{}>('/', async (req, res) => {
     // res.end('hello world');
