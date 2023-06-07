@@ -57,7 +57,7 @@ router.post<{}>('/', async (req, res) => {
     await client.private.cancelAllOrders(strategy.market);
     res.send('All orders canceled');
   }
-  res.send('200 OK');
+  res.send('Error');
 });
 
 export default router;
