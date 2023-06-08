@@ -1,11 +1,7 @@
 import express from 'express';
 import { DydxClient } from '@dydxprotocol/v3-client';
-<<<<<<< HEAD
-import axios from 'axios';
-=======
 // import Web3 from 'web3';
 // import axios from 'axios';
->>>>>>> 3093b0c0bd2353ed2e56ace3db4dd92e2c6f3782
 
 const router = express.Router();
 
@@ -31,16 +27,6 @@ console.log(client.private);
 console.log(client.public);
 console.log(client.public.getMarkets);
 console.log('testing....');
-<<<<<<< HEAD
-const request = axios.create({
-  proxy: {
-    'host': '127.0.0.1',
-    'port': 5000,
-    'protocol': 'http',
-  },
-});
-request.get('https://api.stage.dydx.exchange/v3/markets').then(res => console.log('axios res....', res));
-=======
 client.public.getMarkets().then(res => console.log('DydxClient res....', res));
 
 // const request = axios.create({
@@ -51,7 +37,6 @@ client.public.getMarkets().then(res => console.log('DydxClient res....', res));
 //   },
 // });
 // request.get('https://api.stage.dydx.exchange/v3/markets').then(res => console.log('axios res....', res));
->>>>>>> 3093b0c0bd2353ed2e56ace3db4dd92e2c6f3782
 
 router.post<{}>('/', async (req, res) => {
   const { strategy, bar } = req.body;
