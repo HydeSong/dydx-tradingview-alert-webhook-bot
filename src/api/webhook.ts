@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import express from 'express';
-import { DydxClient } from '@dydxprotocol/v3-client';
-=======
 import express from "express";
 import { DydxClient } from "@dydxprotocol/v3-client";
->>>>>>> ac858556ceeb3cd695397bcdbd0817dd05fc643e
 // import Web3 from 'web3';
 // import axios from 'axios';
 
@@ -25,26 +20,6 @@ const client = new DydxClient("https://api.stage.dydx.exchange", {
   // web3Provider: undefined,
   // timestampAdjustment: 1000,
 });
-<<<<<<< HEAD
-console.log(client);
-console.log(client.ethPrivate);
-console.log(client.eth);
-console.log(client.onboarding);
-console.log(client.private);
-console.log(client.public);
-console.log(client.public.getMarkets);
-console.log('testing....');
-client.public.getMarkets().then(res => console.log('DydxClient res....', res));
-
-// const request = axios.create({
-//   proxy: {
-//     'host': '127.0.0.1',
-//     'port': 5000,
-//     'protocol': 'http',
-//   },
-// });
-// request.get('https://api.stage.dydx.exchange/v3/markets').then(res => console.log('axios res....', res));
-=======
 // console.log(client);
 // console.log(client.ethPrivate);
 // console.log(client.eth);
@@ -57,7 +32,6 @@ client.public.getMarkets().then(res => console.log('DydxClient res....', res));
 // client.public
 //   .getMarkets()
 //   .then((res) => console.log("DydxClient res....", res));
->>>>>>> ac858556ceeb3cd695397bcdbd0817dd05fc643e
 
 // client.private
 //   .getAccount("0xd98EFfF831aAa4Fe8834F9cb211d8397193A5492")
