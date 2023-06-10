@@ -1,4 +1,11 @@
-import { DydxClient } from "@dydxprotocol/v3-client";
+import {
+  DydxClient,
+  Market,
+  OrderResponseObject,
+  OrderType,
+  PositionResponseObject,
+  TimeInForce,
+} from "@dydxprotocol/v3-client";
 import { ClientOptions } from "@dydxprotocol/v3-client/build/src/dydx-client";
 
 export class Dydx extends DydxClient {
@@ -19,8 +26,80 @@ export class Dydx extends DydxClient {
     super(host, options);
   }
 
-  webhook(params: any) {
-    console.log(this, "this....");
+  async webhook(params: any) {
     console.log("params....", params);
+    if (typeof params === "string") {
+      // 参数是文本格式
+      console.log("参数是文本格式");
+    } else {
+      // 参数是json格式
+      console.log("参数是json格式");
+      const { strategy, bar } = params;
+
+      const { account } = await this.private.getAccount(
+        "0xd98EFfF831aAa4Fe8834F9cb211d8397193A5492"
+      );
+      // console.log("account", account);
+      const { positionId } = account;
+
+      const positions: { positions: PositionResponseObject[] } =
+        await this.private.getPositions({});
+
+      console.log("positions", positions);
+
+      const orderResponse: { order: OrderResponseObject } =
+        await this.private.getOrderById(
+          "2f2f4e697212fb6741b2ddbb706048b57e31fdb0bfde9005c48ca8420af5cb6"
+        );
+      console.log("order....", orderResponse);
+    }
+
+    // const params = {
+    //   expiration: "2023-06-10T04:37:31.793Z",
+    //   limitFee: "0.000500",
+    //   market: "BTC-USD",
+    //   postOnly: false,
+    //   price: "24979",
+    //   reduceOnly: true,
+    //   side: "SELL",
+    //   size: "2",
+    //   timeInForce: "FOK",
+    //   type: "MARKET",
+    //   clientId: "45394823746189594",
+    //   signature:
+    //     "01cc21ace4cbb36ad85d7a023126bd420c2391c788c8176c347c57ac8fd0358701edc8e2b1dcb46d947f3787cfcaa5aa264a2bdb40ba1ccf97abb017f0c6f2c0",
+    //   client: "00",
+    // };
+
+    // const myOrder: { order: OrderResponseObject } =
+    //   await this.private.createOrder(
+    //     {
+    //       market: Market.BTC_USD,
+    //       side: strategy.order_action,
+    //       type: OrderType.MARKET,
+    //       size: strategy.order_contracts,
+    //       price: strategy.order_price,
+    //       timeInForce: TimeInForce.FOK,
+    //       postOnly: false,
+    //       reduceOnly: true,
+    //       limitFee: "0.000000",
+    //       expiration: "2023-06-10T17:45:51.423Z",
+    //       clientId: "45394823746189594",
+    //       signature:
+    //         "01cc21ace4cbb36ad85d7a023126bd420c2391c788c8176c347c57ac8fd0358701edc8e2b1dcb46d947f3787cfcaa5aa264a2bdb40ba1ccf97abb017f0c6f2c0",
+    //       // client: "00",
+    //     },
+    //     positionId
+    //   );
+    // console.log(`Order ${myOrder.order.id} created....`);
   }
+
+  // 做多
+  private async long() {}
+
+  // 做空
+  private short() {}
+
+  // 平仓
+  private cover() {}
 }
