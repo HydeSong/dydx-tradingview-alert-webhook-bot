@@ -26,33 +26,31 @@ export class Dydx extends DydxClient {
     super(host, options);
   }
 
-  async webhook(params: any) {
-    console.log("params....", params);
-    if (typeof params === "string") {
-      // 参数是文本格式
-      console.log("参数是文本格式");
-    } else {
-      // 参数是json格式
-      console.log("参数是json格式");
-      const { strategy, bar } = params;
+  async webhook_text(params: any) {
+    console.log("参数是文本格式", params);
+  }
 
-      const { account } = await this.private.getAccount(
-        "0xd98EFfF831aAa4Fe8834F9cb211d8397193A5492"
+  async webhook_json(params: any) {
+    // 参数是json格式
+    console.log("参数是json格式", params);
+    const { strategy, bar } = params;
+
+    const { account } = await this.private.getAccount(
+      "0xd98EFfF831aAa4Fe8834F9cb211d8397193A5492"
+    );
+    // console.log("account", account);
+    const { positionId } = account;
+
+    const positions: { positions: PositionResponseObject[] } =
+      await this.private.getPositions({});
+
+    console.log("positions", positions);
+
+    const orderResponse: { order: OrderResponseObject } =
+      await this.private.getOrderById(
+        "2f2f4e697212fb6741b2ddbb706048b57e31fdb0bfde9005c48ca8420af5cb6"
       );
-      // console.log("account", account);
-      const { positionId } = account;
-
-      const positions: { positions: PositionResponseObject[] } =
-        await this.private.getPositions({});
-
-      console.log("positions", positions);
-
-      const orderResponse: { order: OrderResponseObject } =
-        await this.private.getOrderById(
-          "2f2f4e697212fb6741b2ddbb706048b57e31fdb0bfde9005c48ca8420af5cb6"
-        );
-      console.log("order....", orderResponse);
-    }
+    console.log("order....", orderResponse);
 
     // const params = {
     //   expiration: "2023-06-10T04:37:31.793Z",
