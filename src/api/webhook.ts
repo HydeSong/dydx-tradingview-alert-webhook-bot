@@ -3,7 +3,6 @@ import { Dydx } from "../services/index";
 
 const router = express.Router();
 const client = new Dydx();
-console.log(client.private);
 
 router.post<{}>("/", async (req, res) => {
   if (req.headers["content-type"]!.includes("application/json")) {
