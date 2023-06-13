@@ -5,7 +5,7 @@ const router = express.Router();
 const client = new Dydx();
 
 router.post<{}>("/", async (req, res) => {
-  // console.log(req.headers);
+  console.log(req.headers);
   if (req.headers["content-type"]!.includes("application/json")) {
     client.webhook_json(req.body);
   } else if (

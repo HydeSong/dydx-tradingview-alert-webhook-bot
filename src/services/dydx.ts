@@ -52,7 +52,7 @@ export class Dydx extends DydxClient {
       );
     console.log("order....", orderResponse);
 
-    // const params = {
+    // const orderParams = {
     //   expiration: "2023-06-10T04:37:31.793Z",
     //   limitFee: "0.000500",
     //   market: "BTC-USD",
