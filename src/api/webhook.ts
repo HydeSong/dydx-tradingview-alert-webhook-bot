@@ -3,18 +3,28 @@ import { Dydx } from "../services/index";
 
 const router = express.Router();
 const client = new Dydx();
+console.log(client.private);
 
 router.post<{}>("/", async (req, res) => {
-  console.log(req.headers);
   if (req.headers["content-type"]!.includes("application/json")) {
-    client.webhook_json(req.body);
+    const result = await client.webhook_json(req.body);
+    res.json({
+      code: "000000",
+      status: "success",
+      result,
+    });
   } else if (
     req.headers["content-type"]!.includes("text/plain") ||
     req.headers["content-type"]!.includes("text/html")
   ) {
-    client.webhook_text(req.body);
+    const result = await client.webhook_text(req.body);
+    res.json({
+      code: "000000",
+      status: "success",
+      result,
+    });
   }
-  res.send(req.body);
+  res.send("Error");
 });
 
 export default router;
