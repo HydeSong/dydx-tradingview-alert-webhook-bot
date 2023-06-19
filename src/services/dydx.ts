@@ -4,11 +4,11 @@ require("dotenv").config();
 
 export class Dydx extends DydxClient {
   constructor(
-    host: string = process.env.HOST || "",
+    host: string = process.env.API_HOST_GOERLI || "",
     options: ClientOptions = {
       networkId: 5,
       apiTimeout: 3000,
-      starkPrivateKey: process.env.STARK_PRIVSTE_KEY || "",
+      starkPrivateKey: process.env.STARK_PRIVATE_KEY || "",
       apiKeyCredentials: {
         key: process.env.API_KEY || "",
         secret: process.env.API_SECRET || "",
