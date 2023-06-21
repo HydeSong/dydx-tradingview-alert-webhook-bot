@@ -37,6 +37,8 @@ export class Dydx extends DydxClient {
 
   async webhook_json(params: any) {
     console.log("参数是json格式", params);
+    console.log('public', this.public);
+    console.log('private', this.private);
     const { strategy, ticker } = params;
 
     const { account } = await this.private.getAccount(
