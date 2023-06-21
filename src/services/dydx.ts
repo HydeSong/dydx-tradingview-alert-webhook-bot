@@ -42,7 +42,7 @@ export class Dydx extends DydxClient {
     const { strategy, ticker } = params;
 
     const { account } = await this.private.getAccount(
-      process.env.ETH_ADDR || ""
+      process.env.ETHEREUM_ADDRESS || ""
     );
     const { positionId } = account;
 
